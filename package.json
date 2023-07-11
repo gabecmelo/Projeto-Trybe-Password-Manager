@@ -18,7 +18,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage --watch=false",
     "lint:styles": "npx stylelint '**/*.css'",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx"
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx",
+    "fix": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx --fix ./src"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.20.0",
