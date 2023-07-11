@@ -1,10 +1,17 @@
+import PasswordFormType, { TargetType } from '../../types';
 import './Form.css';
 
 type FormProps = {
   handleCancel: () => void
+  handleChange: ({ target }: TargetType) => void
+  camps: PasswordFormType
+  isFormCompleted: boolean
 };
 
-function Form({ handleCancel } : FormProps) {
+function Form(props: FormProps) {
+  const { handleCancel, handleChange, camps, isFormCompleted } = props;
+  const { serviceName, login, password, url } = camps;
+
   return (
     <div>
       <label htmlFor="serviceName">
@@ -12,6 +19,8 @@ function Form({ handleCancel } : FormProps) {
         <input
           type="text"
           name="serviceName"
+          value={ serviceName }
+          onChange={ handleChange }
           id="serviceName"
         />
       </label>
@@ -20,6 +29,8 @@ function Form({ handleCancel } : FormProps) {
         <input
           type="text"
           name="login"
+          value={ login }
+          onChange={ handleChange }
           id="login"
         />
       </label>
@@ -28,6 +39,8 @@ function Form({ handleCancel } : FormProps) {
         <input
           type="password"
           name="password"
+          value={ password }
+          onChange={ handleChange }
           id="password"
         />
       </label>
@@ -36,11 +49,13 @@ function Form({ handleCancel } : FormProps) {
         <input
           type="text"
           name="url"
+          value={ url }
+          onChange={ handleChange }
           id="url"
         />
       </label>
 
-      <button>Cadastrar</button>
+      <button disabled={ !isFormCompleted }>Cadastrar</button>
       <button onClick={ handleCancel }>Cancelar</button>
     </div>
   );
