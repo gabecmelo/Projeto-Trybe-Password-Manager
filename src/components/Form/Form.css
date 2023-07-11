@@ -1,0 +1,16 @@
+div {
+  display: flex;
+  flex-direction: column;  
+  align-items: flex-start;
+}
+
+input {
+  background-color: aliceblue;
+  margin: 2px;
+}
+
+button {
+  background-color: rgb(92, 92, 255);
+  padding: 2px;
+  margin: 5px;
+}

@@ -1,4 +1,10 @@
-function Form() {
+import './Form.css';
+
+type FormProps = {
+  handleCancel: () => void
+};
+
+function Form({ handleCancel } : FormProps) {
   return (
     <div>
       <label htmlFor="serviceName">
@@ -35,7 +41,7 @@ function Form() {
       </label>
 
       <button>Cadastrar</button>
-      <button>Cancelar</button>
+      <button onClick={ handleCancel }>Cancelar</button>
     </div>
   );
 }
