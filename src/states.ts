@@ -14,4 +14,11 @@ export const INITIAL_NON_VALID_STATES = {
   url: true,
 };
 
+export const INITIAL_PASSWORD_STATES = {
+  hasNumbers: false,
+  hasLetters: false,
+  hasSpecialChars: false,
+  hasCorrectLength: false,
+};
+
 export default INITIAL_STATES;

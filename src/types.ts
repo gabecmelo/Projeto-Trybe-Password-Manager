@@ -12,6 +12,13 @@ export type CampsType = {
   url: boolean
 };
 
+export type PasswordStateType = {
+  hasNumbers: boolean
+  hasLetters: boolean
+  hasSpecialChars: boolean
+  hasCorrectLength: boolean
+};
+
 export type TargetType = React.ChangeEvent<
 HTMLInputElement |
 HTMLSelectElement |

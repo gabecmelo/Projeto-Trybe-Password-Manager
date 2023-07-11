@@ -3,8 +3,12 @@ import './App.css';
 import Form from './components/Form/Form';
 import Header from './components/Title/Title';
 import RegisterPass from './components/RegisterPass/RegisterPass';
-import INITIAL_STATES, { INITIAL_NON_VALID_STATES } from './states';
-import PasswordFormType, { TargetType, CampsType } from './types';
+import INITIAL_STATES, {
+  INITIAL_NON_VALID_STATES,
+  INITIAL_PASSWORD_STATES,
+} from './states';
+import PasswordFormType, { TargetType, CampsType, PasswordStateType } from './types';
+import PasswordManager from './components/PasswordManager';
 
 function App() {
   const [displayForm, setDisplayForm] = useState<boolean>(false);
@@ -12,17 +16,28 @@ function App() {
   const [validCamps, setValidCamps] = useState<CampsType>(INITIAL_NON_VALID_STATES);
   const [isFormCompleted, setIsFormCompleted] = useState<boolean>(false);
 
-  const [password, setPassword] = useState<string>('');
+  const [passwordValue, setPasswordValue] = useState<string>('');
   const [passIsValid, setPassIsValid] = useState<boolean>(false);
+
+  const [passwordChecks, setPasswordChecks] = useState<
+  PasswordStateType>(INITIAL_PASSWORD_STATES);
 
   const verifyPasswordRequirements = (value: string) => {
     const hasNumberRegex = /\d/;
     const hasLetterRegex = /[a-zA-Z]/;
     const hasSpecialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
+    const hasCorrectLength = value.length >= 8 && value.length <= 16;
     const hasNumbersTest = hasNumberRegex.test(value);
     const hasLetterTest = hasLetterRegex.test(value);
     const hasSpecialCharTest = hasSpecialCharRegex.test(value);
+
+    setPasswordChecks({
+      hasLetters: hasLetterTest,
+      hasNumbers: hasNumbersTest,
+      hasSpecialChars: hasSpecialCharTest,
+      hasCorrectLength,
+    });
 
     if (hasNumbersTest && hasLetterTest && hasSpecialCharTest) {
       setPassIsValid(true);
@@ -32,8 +47,9 @@ function App() {
   };
 
   const verifyFormCompletion: () => void = () => {
-    const allCampsValid = Object.values(validCamps).every((valid) => valid);
-    setIsFormCompleted(allCampsValid && passIsValid);
+    const { serviceName, login, password } = validCamps;
+    const requiredFieldsCompleted = serviceName && login && password;
+    setIsFormCompleted(requiredFieldsCompleted && passIsValid);
   };
 
   useEffect(() => {
@@ -41,24 +57,22 @@ function App() {
   }, [validCamps, isFormCompleted]);
 
   const verifyCamps = (name: string, value: string) => {
-    if ((name === 'serviceName' || name === 'login') && value.length > 0) {
-      setValidCamps({
-        ...validCamps,
-        [name]: true,
-      });
-    } else if (name === 'password' && value.length >= 8 && value.length <= 16) {
-      setValidCamps({
-        ...validCamps,
-        [name]: true,
-      });
-      setPassword(value);
+    let isValid = false;
+
+    if (name === 'serviceName' || name === 'login') {
+      isValid = value.length > 0;
+    } else if (name === 'password') {
+      setPasswordValue(value);
       verifyPasswordRequirements(value);
-    } else if (name === 'password' && value.length > 16) {
-      setValidCamps({
-        ...validCamps,
-        [name]: false,
-      });
+      isValid = value.length >= 8 && value.length <= 16;
+    } else if (name === 'url') {
+      isValid = true;
     }
+
+    setValidCamps({
+      ...validCamps,
+      [name]: isValid,
+    });
   };
 
   const handleChange = ({ target }: TargetType) => {
@@ -89,7 +103,7 @@ function App() {
             handleCancel={ handleCancel }
         />)
         : (<RegisterPass handleDisplay={ handleDisplay } />)}
-
+      <PasswordManager passwordChecks={ passwordChecks } />
     </div>
   );
 }
