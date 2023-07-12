@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import Swal from 'sweetalert2';
 import Form from './components/Form';
 import Header from './components/Title';
 import RegisterPass from './components/RegisterPass';
@@ -7,11 +8,13 @@ import INITIAL_STATES, {
   INITIAL_NON_VALID_STATES,
   INITIAL_PASSWORD_STATES,
 } from './states';
-import { TargetType,
+import {
+  TargetType,
   CampsType,
   PasswordStateType,
   PasswordWithIDFormType,
-  PasswordFormType } from './types';
+  PasswordFormType,
+} from './types';
 import PasswordManager from './components/PasswordManager';
 import PasswordList from './components/PasswordList';
 
@@ -97,16 +100,28 @@ function App() {
     verifyCamps(name, value);
   };
 
-  const handleDisplay: () => void = () => {
+  const handleDisplay: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
+    event.preventDefault();
     setDisplayForm(true);
   };
 
-  const handleCancel: () => void = () => {
+  const handleCancel: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
+    event.preventDefault();
     setDisplayForm(false);
   };
 
   const handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
     event.preventDefault();
+
+    const timerInterval = 1500;
+    Swal.fire({
+      title: 'Serviço cadastrado com sucesso!',
+      timer: 1500,
+      timerProgressBar: true,
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    });
 
     setId(id + 1);
 

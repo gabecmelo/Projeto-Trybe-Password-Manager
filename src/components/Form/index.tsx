@@ -3,7 +3,7 @@ import { PasswordFormType, TargetType } from '../../types';
 import './Form.css';
 
 type FormProps = {
-  handleCancel: () => void
+  handleCancel: (event: any) => void
   handleChange: ({ target }: TargetType) => void
   camps: PasswordFormType
   isFormCompleted: boolean

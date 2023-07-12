@@ -1,10 +1,10 @@
 type RegisterPassProps = {
-  handleDisplay: () => void
+  handleDisplay: (event: any) => void
 };
 
 function RegisterPass({ handleDisplay }: RegisterPassProps) {
   return (
-    <button onClick={ handleDisplay }>Cadastrar nova senha</button>
+    <button onClick={ handleDisplay }>Cadastrar nova Senha</button>
   );
 }
 
