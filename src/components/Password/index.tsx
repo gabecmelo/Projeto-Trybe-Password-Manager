@@ -3,9 +3,10 @@ import { PasswordWithIDFormType } from '../../types';
 type PasswordProps = {
   passwordInfo: PasswordWithIDFormType
   handleDelete: (id: string | number) => void
+  hidePasswords: boolean
 };
 
-function Password({ passwordInfo, handleDelete }: PasswordProps) {
+function Password({ passwordInfo, handleDelete, hidePasswords }: PasswordProps) {
   const { serviceName, login, password, url, id } = passwordInfo;
 
   return (
@@ -17,9 +18,16 @@ function Password({ passwordInfo, handleDelete }: PasswordProps) {
         <p>{login}</p>
         Senha
         {' '}
-        <p>{password}</p>
+        {
+          hidePasswords ? <p>{'*'.repeat(password.length)}</p> : <p>{password}</p>
+        }
       </div>
-      <button onClick={ () => handleDelete(id) } data-testid="remove-btn">X</button>
+      <button
+        onClick={ () => handleDelete(id) }
+        data-testid="remove-btn"
+      >
+        X
+      </button>
     </div>
   );
 }
