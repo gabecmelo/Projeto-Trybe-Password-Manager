@@ -1,17 +1,25 @@
-import { PasswordFormType } from '../../types';
+import { PasswordWithIDFormType } from '../../types';
 
 type PasswordProps = {
-  passwordInfo: PasswordFormType
+  passwordInfo: PasswordWithIDFormType
+  handleDelete: (id: string | number) => void
 };
 
-function Password({ passwordInfo }: PasswordProps) {
-  const { serviceName, login, password, url } = passwordInfo;
+function Password({ passwordInfo, handleDelete }: PasswordProps) {
+  const { serviceName, login, password, url, id } = passwordInfo;
 
   return (
     <div>
-      <a href={ url }>{serviceName}</a>
-      <p>{`Login ${login}`}</p>
-      <p>{`senha ${password}`}</p>
+      <a target="_blank" href={ url } rel="noreferrer">{serviceName}</a>
+      <div>
+        Login
+        {' '}
+        <p>{login}</p>
+        Senha
+        {' '}
+        <p>{password}</p>
+      </div>
+      <button onClick={ () => handleDelete(id) } data-testid="remove-btn">X</button>
     </div>
   );
 }

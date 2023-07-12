@@ -82,6 +82,12 @@ function App() {
     });
   };
 
+  const handleDelete = (removeById: string | number) => {
+    const removedPasswords = passwordList
+      .filter((password) => password.id !== removeById);
+    setPasswordList(removedPasswords);
+  };
+
   const handleChange = ({ target }: TargetType) => {
     const { name, value } = target;
     SetCamps({
@@ -137,7 +143,7 @@ function App() {
           </div>
         )
         : (<RegisterPass handleDisplay={ handleDisplay } />)}
-      <PasswordList passwordCamps={ passwordList } />
+      <PasswordList handleDelete={ handleDelete } passwordCamps={ passwordList } />
     </div>
   );
 }
