@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PasswordWithIDFormType, TargetType } from '../../types';
+import { PasswordWithIDFormType } from '../../types';
 import Password from '../Password';
 
 type PasswordListProps = {

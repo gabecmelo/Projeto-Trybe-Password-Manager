@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { PasswordFormType, TargetType } from '../../types';
 import './Form.css';
 
@@ -12,6 +13,13 @@ type FormProps = {
 function Form(props: FormProps) {
   const { handleCancel, handleChange, camps, isFormCompleted, handleSubmit } = props;
   const { serviceName, login, password, url } = camps;
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const togglePassVisibility = (event: React.FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setShowPassword(!showPassword);
+  };
 
   return (
     <form onSubmit={ handleSubmit }>
@@ -38,12 +46,19 @@ function Form(props: FormProps) {
       <label htmlFor="password">
         Senha
         <input
-          type="password"
+          type={ showPassword ? 'text' : 'password' }
           name="password"
           value={ password }
           onChange={ handleChange }
           id="password"
         />
+        <button
+          onClick={ togglePassVisibility }
+          data-testid="show-hide-form-password"
+        >
+          {' '}
+          Mostrar Senha
+        </button>
       </label>
       <label htmlFor="url">
         URL
