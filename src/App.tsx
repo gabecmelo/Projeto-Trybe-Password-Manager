@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Form from './components/Form/Form';
-import Header from './components/Title/Title';
-import RegisterPass from './components/RegisterPass/RegisterPass';
+import Form from './components/Form';
+import Header from './components/Title';
+import RegisterPass from './components/RegisterPass';
 import INITIAL_STATES, {
   INITIAL_NON_VALID_STATES,
   INITIAL_PASSWORD_STATES,
 } from './states';
-import PasswordFormType, { TargetType, CampsType, PasswordStateType } from './types';
+import { TargetType,
+  CampsType,
+  PasswordStateType,
+  PasswordWithIDFormType,
+  PasswordFormType } from './types';
 import PasswordManager from './components/PasswordManager';
+import PasswordList from './components/PasswordList';
 
 function App() {
   const [displayForm, setDisplayForm] = useState<boolean>(false);
   const [camps, SetCamps] = useState<PasswordFormType>(INITIAL_STATES);
   const [validCamps, setValidCamps] = useState<CampsType>(INITIAL_NON_VALID_STATES);
   const [isFormCompleted, setIsFormCompleted] = useState<boolean>(false);
+  const [id, setId] = useState<number>(1);
 
   const [passwordValue, setPasswordValue] = useState<string>('');
   const [passIsValid, setPassIsValid] = useState<boolean>(false);
 
+  const [passwordList, setPasswordList] = useState<PasswordWithIDFormType[]>([]);
   const [passwordChecks, setPasswordChecks] = useState<
   PasswordStateType>(INITIAL_PASSWORD_STATES);
 
@@ -92,18 +99,45 @@ function App() {
     setDisplayForm(false);
   };
 
+  const handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
+    event.preventDefault();
+
+    setId(id + 1);
+
+    const newPassword = {
+      id,
+      ...camps,
+    };
+
+    setPasswordList([
+      ...passwordList,
+      newPassword,
+    ]);
+
+    setDisplayForm(false);
+    SetCamps(INITIAL_STATES);
+  };
+
   return (
     <div>
       <Header />
       {displayForm
-        ? (<Form
-            isFormCompleted={ isFormCompleted }
-            camps={ camps }
-            handleChange={ handleChange }
-            handleCancel={ handleCancel }
-        />)
+        ? (
+          <div>
+            <Form
+              isFormCompleted={ isFormCompleted }
+              camps={ camps }
+              handleChange={ handleChange }
+              handleCancel={ handleCancel }
+              handleSubmit={ handleSubmit }
+            />
+            <PasswordManager
+              passwordChecks={ passwordChecks }
+            />
+          </div>
+        )
         : (<RegisterPass handleDisplay={ handleDisplay } />)}
-      <PasswordManager passwordChecks={ passwordChecks } />
+      <PasswordList passwordCamps={ passwordList } />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import PasswordFormType, { TargetType } from '../../types';
+import { PasswordFormType, TargetType } from '../../types';
 import './Form.css';
 
 type FormProps = {
@@ -6,14 +6,15 @@ type FormProps = {
   handleChange: ({ target }: TargetType) => void
   camps: PasswordFormType
   isFormCompleted: boolean
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 };
 
 function Form(props: FormProps) {
-  const { handleCancel, handleChange, camps, isFormCompleted } = props;
+  const { handleCancel, handleChange, camps, isFormCompleted, handleSubmit } = props;
   const { serviceName, login, password, url } = camps;
 
   return (
-    <div>
+    <form onSubmit={ handleSubmit }>
       <label htmlFor="serviceName">
         Nome do Serviço
         <input
@@ -57,7 +58,7 @@ function Form(props: FormProps) {
 
       <button disabled={ !isFormCompleted }>Cadastrar</button>
       <button onClick={ handleCancel }>Cancelar</button>
-    </div>
+    </form>
   );
 }
 

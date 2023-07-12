@@ -1,4 +1,4 @@
-type PasswordFormType = {
+export type PasswordFormType = {
   serviceName: string
   login: string
   password: string
@@ -24,4 +24,4 @@ HTMLInputElement |
 HTMLSelectElement |
 HTMLTextAreaElement>;
 
-export default PasswordFormType;
+export type PasswordWithIDFormType = PasswordFormType & { id: string | number };
