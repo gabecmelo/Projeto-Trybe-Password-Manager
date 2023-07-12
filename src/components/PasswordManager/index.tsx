@@ -16,7 +16,7 @@ function PasswordManager({ passwordChecks }: PasswordManagerProps) {
   const validChars = hasSpecialChars ? validClass : invalidClass;
 
   return (
-    <div>
+    <div className="password-manager">
       <p className={ validLength }>Possuir 8 ou mais caracteres</p>
       <p className={ validLength }>Possuir até 16 caracteres</p>
       <p className={ validLettersAndNumbers }>Possuir letras e números</p>

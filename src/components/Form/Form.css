@@ -1,16 +1,20 @@
-form {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+.form-container {
+  margin-bottom: 20px;
 }
 
-input {
-  background-color: aliceblue;
-  margin: 2px;
+.show-hide-password {
+  background-color: transparent;
+  border: none;
+  color: #98a6e6;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-button {
-  background-color: rgb(92, 92, 255);
-  margin: 5px;
-  padding: 2px;
+.show-hide-password:hover {
+  text-decoration: underline;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }

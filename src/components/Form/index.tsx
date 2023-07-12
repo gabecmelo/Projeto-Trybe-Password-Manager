@@ -3,11 +3,11 @@ import { PasswordFormType, TargetType } from '../../types';
 import './Form.css';
 
 type FormProps = {
-  handleCancel: (event: any) => void
-  handleChange: ({ target }: TargetType) => void
-  camps: PasswordFormType
-  isFormCompleted: boolean
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  handleCancel: (event: any) => void;
+  handleChange: ({ target }: TargetType) => void;
+  camps: PasswordFormType;
+  isFormCompleted: boolean;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
 
 function Form(props: FormProps) {
@@ -22,57 +22,75 @@ function Form(props: FormProps) {
   };
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <label htmlFor="serviceName">
-        Nome do Serviço
-        <input
-          type="text"
-          name="serviceName"
-          value={ serviceName }
-          onChange={ handleChange }
-          id="serviceName"
-        />
-      </label>
-      <label htmlFor="login">
-        Login
-        <input
-          type="text"
-          name="login"
-          value={ login }
-          onChange={ handleChange }
-          id="login"
-        />
-      </label>
-      <label htmlFor="password">
-        Senha
-        <input
-          type={ showPassword ? 'text' : 'password' }
-          name="password"
-          value={ password }
-          onChange={ handleChange }
-          id="password"
-        />
-        <button
-          onClick={ togglePassVisibility }
-          data-testid="show-hide-form-password"
-        >
-          {' '}
-          Mostrar Senha
+    <form onSubmit={ handleSubmit } className="form-container">
+      <div className="form-field">
+        <label htmlFor="serviceName" className="form-label">
+          Nome do Serviço *
+          <input
+            type="text"
+            name="serviceName"
+            value={ serviceName }
+            onChange={ handleChange }
+            id="serviceName"
+            className="form-input"
+          />
+        </label>
+      </div>
+      <div className="form-field">
+        <label htmlFor="login" className="form-label">
+          Login *
+          <input
+            type="text"
+            name="login"
+            value={ login }
+            onChange={ handleChange }
+            id="login"
+            className="form-input"
+          />
+        </label>
+      </div>
+      <div className="form-field">
+        <label htmlFor="password" className="form-label">
+          Senha *
+          <input
+            type={ showPassword ? 'text' : 'password' }
+            name="password"
+            value={ password }
+            onChange={ handleChange }
+            id="password"
+            className="form-input"
+          />
+          <button
+            onClick={ togglePassVisibility }
+            data-testid="show-hide-form-password"
+            className="show-hide-password"
+          >
+            Mostrar Senha
+          </button>
+        </label>
+      </div>
+      <div className="form-field">
+        <label htmlFor="url" className="form-label">
+          URL
+          <input
+            type="text"
+            name="url"
+            value={ url }
+            onChange={ handleChange }
+            id="url"
+            className="form-input"
+          />
+        </label>
+        <p>* Campos obrigatórios</p>
+      </div>
+      <div className="form-actions">
+        <button disabled={ !isFormCompleted } className="button-primary">
+          Cadastrar
         </button>
-      </label>
-      <label htmlFor="url">
-        URL
-        <input
-          type="text"
-          name="url"
-          value={ url }
-          onChange={ handleChange }
-          id="url"
-        />
-      </label>
-
-      <button disabled={ !isFormCompleted }>Cadastrar</button>
-      <button onClick={ handleCancel }>Cancelar</button>
+        <button onClick={ handleCancel } className="button-secondary">
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 }

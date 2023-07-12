@@ -1,11 +1,65 @@
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.button-primary {
+  background-color: rgb(53, 144, 245);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 5px;
+  padding: 10px 20px;
+}
+
+.button-primary:hover {
+  background-color: rgb(43, 121, 217);
+}
+
+.button-secondary {
+  background-color: rgb(255, 121, 121);
+  border: 1px solid rgb(39, 42, 55);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  padding: 10px 20px;
+}
+
+.button-secondary:hover {
+  background-color: rgb(227, 95, 95);
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  color: white;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+.password-manager {
+  margin-bottom: 20px;
+}
+
 .valid-password-check {
-  color: #aeffb6;
+  color: white;
 }
 
 .invalid-password-check {
-  color: #f58989;
-}
-
-body {
-  background-color: rgb(49, 49, 49);
+  color: rgba(255, 255, 255, 0.5);
 }

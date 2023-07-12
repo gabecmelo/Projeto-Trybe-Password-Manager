@@ -56,7 +56,7 @@ function App() {
     }
   };
 
-  const verifyFormCompletion: () => void = () => {
+  const verifyFormCompletion = () => {
     const { serviceName, login, password } = validCamps;
     const requiredFieldsCompleted = serviceName && login && password;
     setIsFormCompleted(requiredFieldsCompleted && passIsValid);
@@ -100,17 +100,17 @@ function App() {
     verifyCamps(name, value);
   };
 
-  const handleDisplay: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
+  const handleDisplay = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setDisplayForm(true);
   };
 
-  const handleCancel: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
+  const handleCancel = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setDisplayForm(false);
   };
 
-  const handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const timerInterval = 1500;
@@ -130,34 +130,29 @@ function App() {
       ...camps,
     };
 
-    setPasswordList([
-      ...passwordList,
-      newPassword,
-    ]);
-
-    setDisplayForm(false);
+    setPasswordChecks(INITIAL_PASSWORD_STATES);
     SetCamps(INITIAL_STATES);
+    setPasswordList([...passwordList, newPassword]);
+    setDisplayForm(false);
   };
 
   return (
-    <div>
+    <div className="container">
       <Header />
-      {displayForm
-        ? (
-          <div>
-            <Form
-              isFormCompleted={ isFormCompleted }
-              camps={ camps }
-              handleChange={ handleChange }
-              handleCancel={ handleCancel }
-              handleSubmit={ handleSubmit }
-            />
-            <PasswordManager
-              passwordChecks={ passwordChecks }
-            />
-          </div>
-        )
-        : (<RegisterPass handleDisplay={ handleDisplay } />)}
+      {displayForm ? (
+        <div>
+          <Form
+            isFormCompleted={ isFormCompleted }
+            camps={ camps }
+            handleChange={ handleChange }
+            handleCancel={ handleCancel }
+            handleSubmit={ handleSubmit }
+          />
+          <PasswordManager passwordChecks={ passwordChecks } />
+        </div>
+      ) : (
+        <RegisterPass handleDisplay={ handleDisplay } />
+      )}
       <PasswordList handleDelete={ handleDelete } passwordCamps={ passwordList } />
     </div>
   );

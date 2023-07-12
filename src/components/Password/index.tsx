@@ -10,17 +10,23 @@ function Password({ passwordInfo, handleDelete, hidePasswords }: PasswordProps) 
   const { serviceName, login, password, url, id } = passwordInfo;
 
   return (
-    <div>
-      <a target="_blank" href={ url } rel="noreferrer">{serviceName}</a>
+    <div className="passwordCard">
+      <a target="_blank" href={ url } rel="noreferrer">
+        {serviceName}
+        {' '}
+        📎
+      </a>
       <div>
-        Login
-        {' '}
-        <p>{login}</p>
-        Senha
-        {' '}
-        {
-          hidePasswords ? <p>{'*'.repeat(password.length)}</p> : <p>{password}</p>
+        <div className="loginDiv">
+          <p>Login</p>
+          <h3>{login}</h3>
+        </div>
+        <div className="passDiv">
+          <p>Senha</p>
+          {
+          hidePasswords ? <h3>{'*'.repeat(password.length)}</h3> : <h3>{password}</h3>
         }
+        </div>
       </div>
       <button
         onClick={ () => handleDelete(id) }

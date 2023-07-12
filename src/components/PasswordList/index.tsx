@@ -1,3 +1,4 @@
+import './PasswordList.css';
 import { useState } from 'react';
 import { PasswordWithIDFormType } from '../../types';
 import Password from '../Password';
@@ -15,18 +16,19 @@ function PasswordList({ passwordCamps, handleDelete }: PasswordListProps) {
   };
 
   return (
-    <main>
+    <main className="main">
       {passwordCamps.length > 0 && (
         <label htmlFor="hide-password">
-          Esconder Senhas
-          {' '}
-          <input
-            checked={ hidePasswords }
-            onChange={ handleChange }
-            type="checkbox"
-            name="hide-password"
-            id="hide-password"
-          />
+          <p className="hide-password">
+            Esconder Senhas
+            <input
+              checked={ hidePasswords }
+              onChange={ handleChange }
+              type="checkbox"
+              name="hide-password"
+              id="hide-password"
+            />
+          </p>
         </label>
       )}
 

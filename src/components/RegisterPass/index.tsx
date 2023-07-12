@@ -1,10 +1,17 @@
+import './RegisterPass.css';
+
 type RegisterPassProps = {
   handleDisplay: (event: any) => void
 };
 
 function RegisterPass({ handleDisplay }: RegisterPassProps) {
   return (
-    <button onClick={ handleDisplay }>Cadastrar nova Senha</button>
+    <button
+      className="register-password-button"
+      onClick={ handleDisplay }
+    >
+      Cadastrar nova Senha
+    </button>
   );
 }
 
