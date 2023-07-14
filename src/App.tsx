@@ -112,6 +112,7 @@ function App() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setValidCamps(INITIAL_NON_VALID_STATES);
 
     const timerInterval = 1500;
     Swal.fire({
@@ -147,6 +148,7 @@ function App() {
             handleChange={ handleChange }
             handleCancel={ handleCancel }
             handleSubmit={ handleSubmit }
+            passwordChecks={ passwordChecks }
           />
           <PasswordManager passwordChecks={ passwordChecks } />
         </div>
