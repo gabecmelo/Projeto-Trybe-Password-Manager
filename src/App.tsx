@@ -51,6 +51,8 @@ function App() {
 
     if (hasNumbersTest && hasLetterTest && hasSpecialCharTest) {
       setPassIsValid(true);
+      console.log(passIsValid);
+      
     } else {
       setPassIsValid(false);
     }
@@ -74,7 +76,7 @@ function App() {
     } else if (name === 'password') {
       setPasswordValue(value);
       verifyPasswordRequirements(value);
-      isValid = value.length >= 8 && value.length <= 16;
+      isValid = passIsValid;
     } else if (name === 'url') {
       isValid = true;
     }
@@ -148,7 +150,6 @@ function App() {
             handleChange={ handleChange }
             handleCancel={ handleCancel }
             handleSubmit={ handleSubmit }
-            passwordChecks={ passwordChecks }
           />
           <PasswordManager passwordChecks={ passwordChecks } />
         </div>

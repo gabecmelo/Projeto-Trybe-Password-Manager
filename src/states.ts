@@ -1,4 +1,4 @@
-import PasswordFormType from './types';
+import { PasswordFormType } from './types';
 
 const INITIAL_STATES = {
   serviceName: '',

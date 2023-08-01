@@ -1,4 +1,5 @@
 {
+  "homepage": "https://gabecmelo.github.io/Projeto-Trybe-Password-Manager",
   "name": "password-manager",
   "version": "0.1.0",
   "private": true,
@@ -19,7 +20,9 @@
     "coverage": "vitest run --coverage --watch=false",
     "lint:styles": "npx stylelint '**/*.css'",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx",
-    "fix": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx --fix ./src"
+    "fix": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .ts,.tsx --fix ./src",
+    "predeploy":"npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.20.0",
@@ -29,6 +32,7 @@
     "@trybe/eslint-config-frontend": "^1.11.3",
     "@vitejs/plugin-react-swc": "^3.1.0",
     "@vitest/coverage-c8": "^0.30.1",
+    "gh-pages": "^5.0.0",
     "jsdom": "^21.1.0",
     "stylelint": "^14.16.1",
     "stylelint-order": "^5.0.0",

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PasswordFormType, PasswordStateType, TargetType } from '../../types';
 import './Form.css';
 
@@ -8,15 +8,13 @@ type FormProps = {
   camps: PasswordFormType;
   isFormCompleted: boolean;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  passwordChecks: PasswordStateType
 };
 
 function Form(props: FormProps) {
+
+  
   const { handleCancel, handleChange, camps, isFormCompleted,
-    handleSubmit, passwordChecks } = props;
-  const { hasCorrectLength, hasLetters, hasNumbers, hasSpecialChars } = passwordChecks;
-  const isValid = isFormCompleted && hasCorrectLength
-   && hasLetters && hasNumbers && hasSpecialChars;
+    handleSubmit} = props;
 
   const { serviceName, login, password, url } = camps;
 
@@ -90,7 +88,7 @@ function Form(props: FormProps) {
         <p>* Campos obrigatórios</p>
       </div>
       <div className="form-actions">
-        <button disabled={ !isValid } className="button-primary">
+        <button disabled={ !isFormCompleted } className="button-primary">
           Cadastrar
         </button>
         <button onClick={ handleCancel } className="button-secondary">

@@ -16,6 +16,7 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
       include: ['src/**/*'],
       exclude: [],
-    },
+    },    
   },
+  base: "/Projeto-Trybe-Password-Manager",
 });
