@@ -50,9 +50,7 @@ function App() {
     });
 
     if (hasNumbersTest && hasLetterTest && hasSpecialCharTest) {
-      setPassIsValid(true);
-      console.log(passIsValid);
-      
+      setPassIsValid(true);      
     } else {
       setPassIsValid(false);
     }
