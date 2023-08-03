@@ -25,8 +25,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 Para instalar e executar o projeto em sua máquina pessoal, siga os passos abaixo:
 
-1. Certifique-se de ter o [Node.js](https://nodejs.org) instalado em sua máquina.
-2. Faça o clone deste repositório para o seu ambiente local usando o comando:
+1. Faça o clone deste repositório para o seu ambiente local usando o comando:
 
 <!---->
 
@@ -38,13 +37,13 @@ ou
 
     git clone git@github.com:gabecmelo/Projeto-Trybe-Password-Manager.git
 
-3. Acesse a pasta do projeto:
+2. Acesse a pasta do projeto:
 
 <!---->
 
     cd Projeto-Trybe-Password-Manager
 
-4. Instale as dependências do projeto:
+3. Instale as dependências do projeto:
 
 <!---->
 
