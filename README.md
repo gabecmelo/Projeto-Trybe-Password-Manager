@@ -6,6 +6,10 @@ O projeto "Gerenciador de Senhas" é um desafio proposto pela Trybe, no qual voc
 
 Você pode acessar o projeto clicando [aqui](https://gabecmelo.github.io/Projeto-Trybe-Password-Manager).
 
+## Preview 
+
+<img width="75%" src="/images/ScreenshotExample.png" alt="TrybeTunes Screenshot">
+
 ## Tecnologias Utilizadas
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
