@@ -18,7 +18,6 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - TypeScript
 - HTML
 - CSS
-- SweetAlert2 (opcional, para exibir alertas ao usuário)
 - Git
 - GitHub
 
